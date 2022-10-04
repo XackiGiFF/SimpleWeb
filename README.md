@@ -9,7 +9,7 @@ cd SimpleWeb
 ```
 
 Run Docker:
-```
+```bash
 docker-compose up --build
 ```
 
