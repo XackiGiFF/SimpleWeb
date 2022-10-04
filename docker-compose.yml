@@ -28,6 +28,7 @@ services:
       MYSQL_DATABASE: php-auth-demo
       MYSQL_USER: mysql
       MYSQL_PASSWORD: dLdowq3Ji
+
   phpmyadmin:
     container_name: MYADMIN
     image: phpmyadmin/phpmyadmin
