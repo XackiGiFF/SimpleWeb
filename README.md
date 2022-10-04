@@ -1,5 +1,5 @@
 # SimpleWeb Docker-compose
-
+A simple docker-compose WebSite (+php7.4-apache +mariadb:10.3.23 +phpmyadmin +mod rewrite) for fast install and work.
 ## To start:
 
 Clone repository
