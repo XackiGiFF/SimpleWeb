@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  php:
+    container_name: WEB_SERVER
+    build:
+      ./php
+    links: 
+      - mariadb:db
+    volumes:
+      - ./src:/var/www/html
+      - ./php/php.ini:/usr/local/etc/php/php.ini
+    ports:
+      - 80:80
+    depends_on:
+      - mariadb
+
+  mariadb:
+    container_name: DB_SERVER
+    image: mariadb:10.3.23
+    volumes:
+      - ./mariadb:/var/lib/mysql
+      - ./sql/sait.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: dLdowq3JiC18X
+      MYSQL_DATABASE: php-auth-demo
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: dLdowq3Ji
+  phpmyadmin:
+    container_name: MYADMIN
+    image: phpmyadmin/phpmyadmin
+    links: 
+      - mariadb:db
+    ports:
+      - 8765:80
+    volumes:
+      - ./php/php.ini:/usr/local/etc/php/php.ini
+      - ./php/php.ini:/etc/php/7.0/apache2/php.ini
+    environment:
+      MYSQL_ROOT_PASSWORD: qwerty
+      UPLOAD_LIMIT: 1000000000 #Upload limit in bytes
+      MAX_EXECUTION_TIME: 300  #Script Time out
+    depends_on:
+      - mariadb
