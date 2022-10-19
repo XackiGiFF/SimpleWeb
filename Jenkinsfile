@@ -9,10 +9,10 @@ pipeline {
             steps {
                 echo 'Build started...'
                 script {
-                    def webserver = docker.image('php:7.4-apache')
-                    webserver.pull() // Getting the latest available from Docker Hub
-                    webserver.build("webserver", "./php/Dockerfile")  {
-                        echo 'Building docker image for use'
+                    def webserver = docker
+                    webserver.build("web-server:${env.BUILD_ID}", "./php/Dockerfile")
+                    webserver.inside() {
+                        echo 'service apache2 status'
                     }
                 }
             }
