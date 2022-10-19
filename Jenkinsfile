@@ -1,3 +1,5 @@
+import jenkins.model.*
+jenkins = Jenkins.instance
 node {
     workspace = env.WORKSPACE
     agent any
