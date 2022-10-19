@@ -9,7 +9,7 @@ pipeline {
             steps {
                 echo 'Build started...'
                 script {
-                    def webserver = docker.image('7.4-apache')
+                    def webserver = docker.image('php:7.4-apache')
                     webserver.pull() // Getting the latest available from Docker Hub
                     webserver.inside('-v $WORKSPACE:$WORKSPACE') {
                         echo 'Install libs in Docker container'
