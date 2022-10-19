@@ -1,14 +1,19 @@
+def workspace
+node {
+    workspace = env.WORKSPACE
+}
 pipeline {
     agent any
     stages {
-        stage('Initial') {
-            steps {
-                git url: 'https://github.com/XackiGiFF/SimpleWeb.git', branch: 'feature/dev'
-            }
-        }
         stage('Build'){
             steps {
-                echo 'Build'
+                echo 'Build started...'
+                def webserver = docker.image('7.4-apache')
+                webserver.pull() // Getting the latest available from Docker Hub
+                webserver.inside('-v $WORKSPACE:$WORKSPACE') {
+                    echo 'Install libs in Docker container'
+                    sh ('php/build.sh')
+                }
             }
         }
         stage('Test'){
