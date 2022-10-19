@@ -14,6 +14,9 @@ pipeline {
                     webserver.inside() {
                         echo 'Install libs in Docker container'
                         sh ("""
+                        whoami
+                        pwd
+                        uname -a
                         chmod +x php/build.sh
                         php/build.sh
                         """)
