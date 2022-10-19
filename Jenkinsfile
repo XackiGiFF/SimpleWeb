@@ -1,7 +1,7 @@
 import jenkins.model.*
 jenkins = Jenkins.instance
+workspace = env.WORKSPACE
 node {
-    workspace = env.WORKSPACE
     agent any
     stages {
         stage('Build'){
