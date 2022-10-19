@@ -1,17 +1,20 @@
-import jenkins.model.*
-jenkins = Jenkins.instance
-workspace = env.WORKSPACE
+def workspace
 node {
+    workspace = env.WORKSPACE
+}
+pipeline {
     agent any
     stages {
         stage('Build'){
-                def webserver = docker.image('7.4-apache')
+            steps {
                 echo 'Build started...'
+                def webserver = docker.image('7.4-apache')
                 webserver.pull() // Getting the latest available from Docker Hub
                 webserver.inside('-v $WORKSPACE:$WORKSPACE') {
                     echo 'Install libs in Docker container'
-                    sh ('php/build.sh')
+                    sh ('')
                 }
+            }
         }
         stage('Test'){
             steps {
