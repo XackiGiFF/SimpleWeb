@@ -11,14 +11,8 @@ pipeline {
                 script {
                     def webserver = docker.image('php:7.4-apache')
                     webserver.pull() // Getting the latest available from Docker Hub
-                    webserver.build() {
-                        echo 'Install libs in Docker container'
-                        sh ("""
-                        pwd
-                        uname -a
-                        chmod +x php/build.sh
-                        php/build.sh
-                        """)
+                    webserver.build("webserver", "./php/Dockerfile")  {
+                        echo 'Building docker image for use'
                     }
                 }
             }
