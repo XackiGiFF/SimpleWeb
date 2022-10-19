@@ -11,9 +11,9 @@ pipeline {
                 script {
                     def webserver = docker.image('php:7.4-apache')
                     webserver.pull() // Getting the latest available from Docker Hub
-                    webserver.inside('-v $WORKSPACE:$WORKSPACE') {
+                    webserver.inside() {
                         echo 'Install libs in Docker container'
-                        sh ('')
+                        sh ('ls -l')
                     }
                 }
             }
