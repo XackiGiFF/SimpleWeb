@@ -1,4 +1,5 @@
 def workspace
+def webserver = docker.image('7.4-apache')
 node {
     workspace = env.WORKSPACE
 }
@@ -6,7 +7,6 @@ pipeline {
     agent any
     stages {
         stage('Build'){
-            def webserver = docker.image('7.4-apache')
             steps {
                 echo 'Build started...'
                 webserver.pull() // Getting the latest available from Docker Hub
