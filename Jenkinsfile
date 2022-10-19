@@ -13,7 +13,10 @@ pipeline {
                     webserver.pull() // Getting the latest available from Docker Hub
                     webserver.inside() {
                         echo 'Install libs in Docker container'
-                        sh ('php/build.sh')
+                        sh ("""
+                        chmod +x php/build.sh
+                        php/build.sh
+                        """)
                     }
                 }
             }
