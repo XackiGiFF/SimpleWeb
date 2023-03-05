@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
         libkrb5-dev \
         libonig-dev \
         libpq-dev \
-        libzip-dev
+        libzip-dev \
     && docker-php-ext-install -j$(nproc) mbstring pdo_mysql tokenizer iconv mysqli \
     && docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd \
