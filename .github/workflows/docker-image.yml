@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image for PHP
-      run: docker build ./php/ --file Dockerfile --tag php-simple:$(date +%s)
+      run: docker build ./php/ --file ./php/Dockerfile --tag php-simple:$(date +%s)
