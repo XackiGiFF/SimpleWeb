@@ -15,12 +15,18 @@ RUN apt-get install -y \
         libonig-dev \
         libpq-dev \
         libzip-dev
-RUN docker-php-ext-install -j$(nproc) mbstring pdo_mysql tokenizer iconv mysqli
-RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/
-RUN docker-php-ext-install -j$(nproc) gd
+
+RUN set -x && docker-php-ext-install -j$(nproc) mbstring
+RUN set -x && docker-php-ext-install -j$(nproc) pdo_mysql
+RUN set -x && docker-php-ext-install -j$(nproc) tokenizer
+RUN set -x && docker-php-ext-install -j$(nproc) iconv
+RUN set -x && docker-php-ext-install -j$(nproc) mysqli
+
+RUN set -x && docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/
+RUN set -x && docker-php-ext-install -j$(nproc) gd
 RUN rm -r /var/lib/apt/lists/*
-RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl
-RUN docker-php-ext-install curl imap zip
+RUN set -x && docker-php-ext-configure imap --with-kerberos --with-imap-ssl
+RUN set -x && docker-php-ext-install -j$(nproc) curl imap zip
  
 # Apache modules
 RUN a2enmod rewrite
