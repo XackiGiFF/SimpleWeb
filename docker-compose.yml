@@ -17,7 +17,7 @@ services:
 
   mariadb:
     container_name: DB_SERVER
-    image: mariadb:10.3.23
+    image: mariadb:latest
     volumes:
       - ./mariadb:/var/lib/mysql
       - ./sql/sait.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
