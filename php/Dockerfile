@@ -18,7 +18,8 @@ RUN apt-get install -y \
 
 RUN set -x && docker-php-ext-install -j$(nproc) mbstring
 RUN set -x && docker-php-ext-install -j$(nproc) pdo_mysql
-RUN set -x && docker-php-ext-install -j$(nproc) tokenizer
+#RUN set -x && docker-php-ext-install -j$(nproc) tokenizer
+RUN sex -x && php -i | grep -i token
 RUN set -x && docker-php-ext-install -j$(nproc) iconv
 RUN set -x && docker-php-ext-install -j$(nproc) mysqli
 
