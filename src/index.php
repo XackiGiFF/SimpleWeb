@@ -1,5 +1,5 @@
 <?php
 
-echo "<h1>Веб сервер успешно запущен!</h1>";
+echo "<h1>Web server has been started!</h1>";
 
-?>
+phpinfo();
